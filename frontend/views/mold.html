@@ -1,0 +1,33 @@
+<main class="grid-container">
+  <div class="card" data-symbol="GVL_HMI.stMold.fClampingPressure" data-format="1">
+    <h3>Mengene Basıncı</h3>
+    <div class="metric"><span class="metric-value">--</span> <small>Bar</small></div>
+  </div>
+
+  <div class="card card-editable" 
+       data-title="Hedef Basınç" 
+       data-symbol="GVL_HMI.stMold.fSetClampingPressure" 
+       data-min="10" data-max="200" data-unit="Bar" data-format="1"
+       data-auth="technician">
+    <h3>Hedef Basınç</h3>
+    <div class="metric"><span class="metric-value">--</span> <small>Bar</small></div>
+  </div>
+
+  <div class="card" data-symbol="GVL_HMI.stMold.fMoldTemperature" data-format="1">
+    <h3>Kalıp Sıcaklığı</h3>
+    <div class="metric"><span class="metric-value">--</span> <small>°C</small></div>
+  </div>
+  <div class="card card-editable" 
+      data-title="Hat Basıncı"
+      data-symbol="GVL_HMI.stGlobal.fEmergencyPressure" 
+      data-format="1">
+      <h3>Hat Basıncı</h3>
+      <div class="metric"><span class="metric-value">--</span> <small>Bar</small></div>
+  </div>
+</main>
+
+<div class="page-action-bar">
+  <button class="btn btn-green hmi-btn" data-symbol="GVL_HMI.stMold.bCmdMoldClose" data-type="momentary" data-auth="operator">KALIP KAPAT</button>
+  <button class="btn btn-red hmi-btn" data-symbol="GVL_HMI.stMold.bCmdMoldOpen" data-type="momentary" data-auth="operator">KALIP AÇ</button>
+  <button class="btn btn-gray hmi-btn" data-symbol="GVL_HMI.stMold.bAutoCycleToggle" data-type="toggle" data-auth="operator">OTOMATİK ÇEVRİM</button>
+</div>

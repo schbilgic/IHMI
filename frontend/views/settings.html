@@ -1,0 +1,55 @@
+<div class="system-panel">
+  <!-- Sistem & Dil Parametreleri -->
+  <div class="alarm-table-container" >
+    <div class="alarm-section-header" style="padding: 1rem 1rem 1rem 1rem;">
+      <h3 style="color: #60a5fa;" data-i18n="16">Dil Seçimi</h3>
+    </div>
+
+    <div class="user-form-grid" style="display: flex; gap:1rem; padding: 1rem 1rem 1rem 1rem;">
+      <div class="form-group" style="margin-bottom: 0; min-width: 220px;">
+        <select id="select-default-language" class="hmi-input-field" style="margin-top: 0rem; height: 60px; ">
+          <option value="TR" data-i18n="17">TR-Türkçe</option>
+          <option value="EN" data-i18n="18">EN-English</option>
+          <option value="OTHER" data-i18n="19">OTHER</option>
+        </select>
+      </div>
+
+      <!-- TEXTS Editörüne Geçiş Butonu -->
+      <button id="btn-goto-texts" class="btn btn-gray" width: 320px; onclick="router.navigate('texts')">
+        <svg class="hmi-icon"><use href="#icon-recipes"></use></svg>
+        <span style="font-weight: bold;" data-i18n="20">TEXTS (Metin Editörü)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Kullanıcı Yönetimi Paneli (Mevcut yapı) -->
+  <div class="alarm-table-container" style="padding: 1.25rem;">
+    <div class="alarm-section-header" style="padding: 0 0 1rem 0;">
+      <h3 style="color: #60a5fa;">Kullanıcı Yönetimi</h3>
+    </div>
+    
+    <div class="user-form-grid" style="display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
+      <input type="text" id="new-user-name" class="hmi-input-field hmi-keyboard-target" placeholder="Kullanıcı Adı" style="flex: 1; min-width: 150px;">
+      <input type="password" id="new-user-pass" class="hmi-input-field hmi-keyboard-target" placeholder="Şifre" style="flex: 1; min-width: 150px;">
+      <select id="new-user-role" class="hmi-input-field" style="width: 140px;">
+        <option value="operator">Operator</option>
+        <option value="technician">Technician</option>
+        <option value="admin">Admin</option>
+      </select>
+      <input type="number" id="new-user-timeout" class="hmi-input-field hmi-keyboard-target" placeholder="Timeout (sn)" value="60" style="width: 120px;">
+      <button id="btn-save-user" class="btn btn-gray">Kaydet</button>
+    </div>
+
+    <table class="alarm-table">
+      <thead>
+        <tr>
+          <th>Kullanıcı Adı</th>
+          <th>Rol</th>
+          <th>Zaman Aşımı (sn)</th>
+          <th style="width: 90px;">İşlem</th>
+        </tr>
+      </thead>
+      <tbody id="user-table-body"></tbody>
+    </table>
+  </div>
+</div>

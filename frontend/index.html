@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>SCADA / HMI Panel</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <!-- Dinamik SVG Sprite Konteyneri -->
+  <div id="svg-sprite-container" style="display: none;"></div>
+  
+  <div class="app-layout">
+    <!-- Sabit Üst Bar -->
+<!-- Header Bölümü -->
+    <header class="topbar">
+      <div class="brand">
+        <h2>HAT-01 // ÜRETİM ÜNİTESİ</h2>
+      </div>
+
+      <div class="header-right">
+        <span id="plc-status" class="badge badge-outline">PLC BAĞLANIYOR</span>
+        <span id="state-badge" class="badge">DURDU</span>
+
+        <!-- Header Alarm Butonu (SVG) -->
+        <button id="btn-header-alarm" class="icon-btn header-alarm-btn" title="Alarmlar" onclick="router.navigate('alarms')">
+          <svg class="hmi-icon"><use href="#icon-alarm"></use></svg>
+          <span id="alarm-badge" class="alarm-count-badge hidden">0</span>
+        </button>
+
+        <!-- Kullanıcı Menüsü (SVG) -->
+        <div class="user-control">
+          <span id="user-role-badge" class="role-badge role-none">NoOne</span>
+          <button id="btn-login-dialog" class="icon-btn" title="Kullanıcı Girişi / Çıkışı">
+            <svg class="hmi-icon"><use href="#icon-user"></use></svg>
+          </button>
+          <button id="btn-nav-system" class="icon-btn hidden" title="Ayarlar" onclick="router.navigate('settings')">
+            <svg class="hmi-icon"><use href="#icon-settings"></use></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dinamik Sayfaların Yükleneceği Alan -->
+    <main id="app-content" class="content-viewport"></main>
+
+    <!-- Sabit Alt Navigasyon Barı -->
+        <!-- Sabit Alt Navigasyon Barı -->
+    <footer class="bottom-nav">
+      <button class="nav-btn" data-page="dashboard" onclick="router.navigate('dashboard')">
+        <svg class="hmi-icon"><use href="#icon-dashboard"></use></svg>
+        <span class="nav-label" data-i18n="9">Dashboard</span>
+      </button>
+      <button class="nav-btn" data-page="carriage" onclick="router.navigate('carriage')">
+        <svg class="hmi-icon"><use href="#icon-carriage"></use></svg>
+        <span class="nav-label" data-i18n="10">Carriage</span>
+      </button>
+      <button class="nav-btn" data-page="mold" onclick="router.navigate('mold')">
+        <svg class="hmi-icon"><use href="#icon-mold"></use></svg>
+        <span class="nav-label"data-i18n="11">Mold</span>
+      </button>
+      <button class="nav-btn" data-page="auxilaries" onclick="router.navigate('auxilaries')">
+        <svg class="hmi-icon"><use href="#icon-aux"></use></svg>
+        <span class="nav-label"data-i18n="12">Auxiliaries</span>
+      </button>
+      <button class="nav-btn" data-page="alarms" onclick="router.navigate('alarms')">
+        <svg class="hmi-icon"><use href="#icon-alarm"></use></svg>
+        <span class="nav-label"data-i18n="13">Alarms</span>
+      </button>
+      <button class="nav-btn" data-page="recipes" onclick="router.navigate('recipes')">
+        <svg class="hmi-icon"><use href="#icon-recipes"></use></svg>
+        <span class="nav-label"data-i18n="14">Recipes</span>
+      </button>
+      <button class="nav-btn" data-page="settings" onclick="router.navigate('settings')" data-auth="admin">
+        <svg class="hmi-icon"><use href="#icon-settings"></use></svg>
+        <span class="nav-label"data-i18n="15">Settings</span>
+      </button>
+    </footer>
+  </div>
+
+  <!-- Global Login Modal -->
+  <div id="login-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3>Kullanıcı Girişi</h3>
+      <div class="form-group">
+        <label>Kullanıcı Adı</label>
+        <input type="text" id="login-username" class="hmi-input-field hmi-keyboard-target" placeholder="Kullanıcı Adı" readonly>
+      </div>
+      <div class="form-group">
+        <label>Şifre</label>
+        <input type="password" id="login-password" class="hmi-input-field hmi-keyboard-target" placeholder="Şifre" readonly>
+      </div>
+      <div id="login-error" class="login-error-msg hidden"></div>
+      <div class="modal-actions">
+        <button id="btn-do-login" class="btn btn-green">Giriş Yap</button>
+        <button id="btn-close-login" class="btn btn-gray">İptal</button>
+        <button id="btn-do-logout" class="btn btn-red hidden">Çıkış Yap</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Numpad Modal -->
+  <div id="numpad-modal" class="numpad-overlay hidden">
+    <div class="numpad-box">
+      <div class="numpad-header">
+        <span id="numpad-title">Parametre</span>
+        <span id="numpad-limits" class="limits-text"></span>
+      </div>
+      <div class="numpad-display" id="numpad-screen">0</div>
+      <div class="numpad-grid">
+        <button class="np-btn" data-key="7">7</button>
+        <button class="np-btn" data-key="8">8</button>
+        <button class="np-btn" data-key="9">9</button>
+        <button class="np-btn np-action" data-key="CLR">C</button>
+        <button class="np-btn" data-key="4">4</button>
+        <button class="np-btn" data-key="5">5</button>
+        <button class="np-btn" data-key="6">6</button>
+        <button class="np-btn np-action" data-key="BACK">⌫</button>
+        <button class="np-btn" data-key="1">1</button>
+        <button class="np-btn" data-key="2">2</button>
+        <button class="np-btn" data-key="3">3</button>
+        <button class="np-btn np-cancel" data-key="ESC">ESC</button>
+        <button class="np-btn" data-key="0">0</button>
+        <button class="np-btn" data-key=".">.</button>
+        <button class="np-btn np-enter" data-key="ENTER">ENTER</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Modal -->
+  <div id="keyboard-modal" class="modal-overlay hidden">
+    <div class="keyboard-box">
+      <div class="keyboard-header">
+        <span id="keyboard-title">Metin Girin</span>
+        <div class="keyboard-header-actions">
+          <button id="keyboard-toggle-mask" class="kb-icon-btn hidden" title="Şifreyi Göster/Gizle">👁️</button>
+          <button class="kb-close-btn" onclick="document.getElementById('keyboard-modal').classList.add('hidden')">✕</button>
+        </div>
+      </div>
+      <div class="keyboard-display" id="keyboard-screen"></div>
+      <div class="keyboard-grid">
+        <div class="kb-row">
+          <button class="kb-btn" data-key="1" data-char="1">1</button>
+          <button class="kb-btn" data-key="2" data-char="2">2</button>
+          <button class="kb-btn" data-key="3" data-char="3">3</button>
+          <button class="kb-btn" data-key="4" data-char="4">4</button>
+          <button class="kb-btn" data-key="5" data-char="5">5</button>
+          <button class="kb-btn" data-key="6" data-char="6">6</button>
+          <button class="kb-btn" data-key="7" data-char="7">7</button>
+          <button class="kb-btn" data-key="8" data-char="8">8</button>
+          <button class="kb-btn" data-key="9" data-char="9">9</button>
+          <button class="kb-btn" data-key="0" data-char="0">0</button>
+          <button class="kb-btn kb-action" data-key="BACK">⌫</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-btn" data-key="q" data-char="q">q</button>
+          <button class="kb-btn" data-key="w" data-char="w">w</button>
+          <button class="kb-btn" data-key="e" data-char="e">e</button>
+          <button class="kb-btn" data-key="r" data-char="r">r</button>
+          <button class="kb-btn" data-key="t" data-char="t">t</button>
+          <button class="kb-btn" data-key="y" data-char="y">y</button>
+          <button class="kb-btn" data-key="u" data-char="u">u</button>
+          <button class="kb-btn" data-key="i" data-char="i">i</button>
+          <button class="kb-btn" data-key="o" data-char="o">o</button>
+          <button class="kb-btn" data-key="p" data-char="p">p</button>
+          <button class="kb-btn kb-action" data-key="CLR">C</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-btn kb-special" data-key="CAPS">CAPS</button>
+          <button class="kb-btn" data-key="a" data-char="a">a</button>
+          <button class="kb-btn" data-key="s" data-char="s">s</button>
+          <button class="kb-btn" data-key="d" data-char="d">d</button>
+          <button class="kb-btn" data-key="f" data-char="f">f</button>
+          <button class="kb-btn" data-key="g" data-char="g">g</button>
+          <button class="kb-btn" data-key="h" data-char="h">h</button>
+          <button class="kb-btn" data-key="j" data-char="j">j</button>
+          <button class="kb-btn" data-key="k" data-char="k">k</button>
+          <button class="kb-btn" data-key="l" data-char="l">l</button>
+          <button class="kb-btn kb-enter" data-key="ENTER">ENTER</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-btn kb-special" data-key="SHIFT">SHIFT</button>
+          <button class="kb-btn" data-key="z" data-char="z">z</button>
+          <button class="kb-btn" data-key="x" data-char="x">x</button>
+          <button class="kb-btn" data-key="c" data-char="c">c</button>
+          <button class="kb-btn" data-key="v" data-char="v">v</button>
+          <button class="kb-btn" data-key="b" data-char="b">b</button>
+          <button class="kb-btn" data-key="n" data-char="n">n</button>
+          <button class="kb-btn" data-key="m" data-char="m">m</button>
+          <button class="kb-btn" data-key="." data-char=".">.</button>
+          <button class="kb-btn" data-key="_" data-char="_">_</button>
+          <button class="kb-btn kb-special" data-key="SPACE">BOŞLUK</button>
+          <button class="kb-btn kb-cancel" data-key="ESC">ESC</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/components/numpad.js"></script>
+  <script src="js/components/keyboard.js"></script>
+  <script src="js/view-router.js"></script>
+  <script src="js/recipe.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+

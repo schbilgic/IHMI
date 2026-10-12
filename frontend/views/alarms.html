@@ -1,0 +1,111 @@
+<div class="alarm-view-layout">
+  <!-- Üst Araç Çubuğu -->
+  <div class="alarm-toolbar">
+    
+    <!-- Aktif Mod: Momentary Hata Sıfırla -->
+    <div id="alarm-active-actions" class="alarm-actions-box">
+      <button class="btn btn-red hmi-btn" 
+              data-symbol="GVL_HMI.stGlobal.bAlarmReset" 
+              data-type="momentary" 
+              data-auth="operator"
+              style="display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; font-weight: bold;">
+        <svg class="hmi-icon"><use href="#icon-warning"></use></svg>
+        <span>HATA SIFIRLA (ACK)</span>
+      </button>
+    </div>
+
+    <!-- Geçmiş Modu: Arama Çubuğu + Filtrele + Temizle + YENİLE Butonları -->
+    <div id="alarm-history-search" class="alarm-search-box hidden">
+      <input type="text" id="alarm-filter-input" class="hmi-input-field hmi-keyboard-target" placeholder="Geçmişte ara (ID, açıklama, kullanıcı...)" autocomplete="off">
+      <button id="btn-alarm-search" class="icon-btn" title="Filtrele">
+        <svg class="hmi-icon"><use href="#icon-search"></use></svg>
+      </button>
+      <button id="btn-alarm-clear-filter" class="icon-btn" title="Filtreyi Temizle">
+        <svg class="hmi-icon"><use href="#icon-close"></use></svg>
+      </button>
+      <!-- Yenile butonu buraya taşındı -->
+      <button id="btn-refresh-history" class="icon-btn" title="Geçmiş Kayıtları Yenile">
+        <svg class="hmi-icon"><use href="#icon-refresh"></use></svg>
+      </button>
+    </div>
+
+    <!-- Sekme Geçiş Butonu -->
+    <div class="alarm-view-switch">
+      <button id="btn-toggle-alarm-view" class="btn btn-blue" style="display: flex; align-items: center; gap: 0.5rem;">
+        <svg id="alarm-switch-svg" class="hmi-icon"><use href="#icon-calendar"></use></svg>
+        <span id="alarm-switch-text">Alarm Geçmişi</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 1. SEKME: Aktif Alarmlar -->
+  <div id="alarm-tab-active" class="alarm-table-container">
+    <div class="alarm-section-header">
+      <h3 style="color: var(--red); display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+        <svg class="hmi-icon" style="stroke: var(--red);"><use href="#icon-alarm"></use></svg>
+        <span>Aktif Alarmlar (<span id="active-alarm-count">0</span>)</span>
+      </h3>
+    </div>
+
+    <div class="alarm-table-scroll">
+      <table class="alarm-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-table="active" data-col="id" data-type="num" style="width: 90px;">
+              ID <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="active" data-col="description" data-type="str">
+              Alarm Açıklaması <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="active" data-col="raisedAt" data-type="date" style="width: 220px;">
+              Oluşma Zamanı <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="active" data-col="activeUser" data-type="str" style="width: 150px;">
+              Kullanıcı <span class="sort-indicator">↕</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="active-alarm-body">
+          <tr><td colspan="4" class="empty-alarm-msg">Şu anda aktif bir alarm bulunmuyor. Sistem normal.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2. SEKME: Alarm Geçmişi -->
+  <div id="alarm-tab-history" class="alarm-table-container hidden">
+    <div class="alarm-section-header">
+      <h3 style="color: #60a5fa; display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+        <svg class="hmi-icon" style="stroke: #60a5fa;"><use href="#icon-recipes"></use></svg>
+        <span>Kayıtlı Alarm Geçmişi (<span id="history-alarm-count">0</span>)</span>
+      </h3>
+    </div>
+
+    <div class="alarm-table-scroll">
+      <table class="alarm-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-table="history" data-col="alarm_id" data-type="num" style="width: 90px;">
+              ID <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="history" data-col="description" data-type="str">
+              Alarm Açıklaması <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="history" data-col="raised_at" data-type="date" style="width: 200px;">
+              Oluşma Zamanı <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="history" data-col="cleared_at" data-type="date" style="width: 200px;">
+              Kapanma Zamanı <span class="sort-indicator">↕</span>
+            </th>
+            <th class="sortable" data-table="history" data-col="user_at_raise" data-type="str" style="width: 150px;">
+              Kullanıcı <span class="sort-indicator">↕</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="history-alarm-body">
+          <tr><td colspan="5" class="empty-alarm-msg">Kayıtlı alarm geçmişi yükleniyor...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

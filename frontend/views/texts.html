@@ -1,0 +1,45 @@
+<div class="alarm-view-layout">
+  <!-- Üst Araç Çubuğu: Geri Dön ve Ekleme Formu -->
+  <div class="alarm-toolbar">
+    <button class="btn btn-gray" onclick="router.navigate('settings')" style="display: flex; align-items: center; gap: 0.4rem;">
+      <svg class="hmi-icon"><use href="#icon-close"></use></svg>
+      <span>Ayarlara Dön</span>
+    </button>
+    
+    <div style="color: #94a3b8; font-size: 0.9rem;">
+      HMI Text Veritabanı (Toplam Kayıt: <span id="texts-count" style="color:#60a5fa; font-weight:bold;">0</span>)
+    </div>
+  </div>
+
+  <!-- Ekle / Düzenle Kartı -->
+  <div class="alarm-table-container" style="flex: 0 0 auto; padding: 1rem; margin-bottom: 0.5rem;">
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+      <input type="number" id="txt-id" class="hmi-input-field hmi-keyboard-target" placeholder="ID (Örn: 20)" style="width: 100px;">
+      <input type="text" id="txt-tr" class="hmi-input-field hmi-keyboard-target" placeholder="Türkçe (TR)" style="flex: 1; min-width: 180px;">
+      <input type="text" id="txt-en" class="hmi-input-field hmi-keyboard-target" placeholder="İngilizce (EN)" style="flex: 1; min-width: 180px;">
+      <input type="text" id="txt-other" class="hmi-input-field hmi-keyboard-target" placeholder="Diğer (OTHER)" style="flex: 1; min-width: 180px;">
+      <button id="btn-save-text" class="btn btn-green" style="min-width: 110px;">Kaydet / Ekle</button>
+      <button id="btn-clear-text-form" class="btn btn-gray">Temizle</button>
+    </div>
+  </div>
+
+  <!-- Tablo Listesi -->
+  <div class="alarm-table-container">
+    <div class="alarm-table-scroll">
+      <table class="alarm-table">
+        <thead>
+          <tr>
+            <th style="width: 80px;">ID</th>
+            <th>TR (Türkçe)</th>
+            <th>EN (English)</th>
+            <th>OTHER (Diğer)</th>
+            <th style="width: 140px; text-align: center;">İşlemler</th>
+          </tr>
+        </thead>
+        <tbody id="texts-table-body">
+          <tr><td colspan="5" class="empty-alarm-msg">Yükleniyor...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

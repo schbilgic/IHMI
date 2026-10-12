@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Makine HMI Paneli</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+  <div class="hmi-container">
+    <header class="status-bar">
+      <h1>Üretim Hattı #1</h1>
+      <div id="conn-status" class="badge">Bağlanıyor...</div>
+    </header>
+
+    <main class="control-panel">
+      <!-- Canlı Metrik Göstergesi -->
+      <section class="card">
+        <h2>Hat Hızı</h2>
+        <div class="metric-display">
+          <span id="speed-val">0</span> <small>RPM</small>
+        </div>
+      </section>
+
+      <!-- Buton / Kontrol Bölümü -->
+      <section class="card">
+        <h2>Hızlı Kontrol</h2>
+        <button id="btn-start" class="btn btn-primary">BAŞLAT</button>
+        <button id="btn-stop" class="btn btn-danger">DURDUR</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

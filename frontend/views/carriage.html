@@ -1,0 +1,36 @@
+<main class="grid-container">
+  <!-- Struct içi değişken: fActPosition -->
+  <div class="card" data-symbol="GVL_HMI.stCarriage.fActPosition" data-format="2">
+    <h3>Taşıyıcı Pozisyonu</h3>
+    <div class="metric"><span class="metric-value">--</span> <small>mm</small></div>
+  </div>
+
+  <!-- Struct içi setpoint: fSetPosition -->
+  <div class="card card-editable" 
+       data-title="Hedef Pozisyon" 
+       data-symbol="GVL_HMI.stCarriage.fSetPosition" 
+       data-min="0" data-max="1500" data-unit="mm" data-format="2"
+       data-auth="operator">
+    <h3>Hedef Pozisyon</h3>
+    <div class="metric"><span class="metric-value">--</span> <small>mm</small></div>
+  </div>
+
+  <div class="card" data-symbol="GVL_HMI.stCarriage.fActVelocity" data-format="1">
+    <h3>Eksen Hızı</h3>
+    <div class="metric"><span class="metric-value">--</span> <small>mm/s</small></div>
+  </div>
+    <!-- Global değişken: Hangi sayfaya giderseniz gidin canlı kalır -->
+  <div class="card card-editable" 
+      data-title="Hat Basıncı"
+      data-symbol="GVL_HMI.stGlobal.fEmergencyPressure" 
+      data-format="1">
+      <h3>Hat Basıncı</h3>
+      <div class="metric"><span class="metric-value">--</span> <small>Bar</small></div>
+  </div>
+</main>
+
+<div class="page-action-bar">
+  <button class="btn btn-blue hmi-btn" data-symbol="GVL_HMI.stCarriage.bJogForward" data-type="momentary" data-auth="operator">JOG İLERİ</button>
+  <button class="btn btn-blue hmi-btn" data-symbol="GVL_HMI.stCarriage.bJogBackward" data-type="momentary" data-auth="operator">JOG GERİ</button>
+  <button class="btn btn-gray hmi-btn" data-symbol="GVL_HMI.stCarriage.bHomeAxis" data-type="momentary" data-auth="technician">HOMING YAP</button>
+</div>

@@ -1,0 +1,48 @@
+<div class="system-panel">
+  <div class="panel-header">
+    <h3>Sistem Ayarları // Kullanıcı Yönetimi</h3>
+    <button id="btn-back-dashboard" class="btn btn-blue" onclick="router.navigate('dashboard')">Geri Dön</button>
+  </div>
+  
+  <div class="system-grid">
+    <div class="system-card">
+      <h4>Yeni Kullanıcı Ekle</h4>
+      <div class="form-group">
+        <label>Kullanıcı Adı</label>
+        <input type="text" id="new-user-name" class="hmi-input-field hmi-keyboard-target" placeholder="Kullanıcı Adı" readonly>
+      </div>
+      <div class="form-group">
+        <label>Şifre</label>
+        <input type="password" id="new-user-pass" class="hmi-input-field hmi-keyboard-target" placeholder="Şifre" readonly>
+      </div>
+      <div class="form-group">
+        <label>Yetki Seviyesi</label>
+        <select id="new-user-role" class="hmi-input-field">
+          <option value="operator">Operator</option>
+          <option value="technician">Technician</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Oturum Aşımı (Saniye)</label>
+        <input type="number" id="new-user-timeout" class="hmi-input-field" value="300">
+      </div>
+      <button id="btn-save-user" class="btn btn-green">Kaydet</button>
+    </div>
+
+    <div class="system-card">
+      <h4>Mevcut Kullanıcılar</h4>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Ad</th>
+            <th>Yetki</th>
+            <th>Timeout (s)</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="user-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

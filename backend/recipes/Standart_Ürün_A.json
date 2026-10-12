@@ -1,0 +1,31 @@
+{
+  "name": "Standart Ürün A",
+  "updatedAt": "2026-10-11T22:14:52.967Z",
+  "items": [
+    {
+      "name": "Reçete Adı",
+      "path": "GVL_HMI.stRecipes.sRecipeName",
+      "val": "Standart Ürün A"
+    },
+    {
+      "name": "Taşıyıcı Hız",
+      "path": "GVL_HMI.stRecipes.rSpeedSet",
+      "val": "250"
+    },
+    {
+      "name": "Taşıyıcı Pozisyon",
+      "path": "GVL_HMI.stRecipes.rPosSet",
+      "val": "450.5"
+    },
+    {
+      "name": "Yeni Parametre",
+      "path": "GVL_HMI.stRecipes.rTempSet",
+      "val": "125"
+    },
+    {
+      "name": "Yeni Parametre",
+      "path": "GVL_HMI.stRecipes.rPressureSet",
+      "val": "29"
+    }
+  ]
+}

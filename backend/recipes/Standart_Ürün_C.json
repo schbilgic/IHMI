@@ -1,0 +1,31 @@
+{
+  "name": "Standart Ürün C",
+  "updatedAt": "2026-10-11T22:24:17.501Z",
+  "items": [
+    {
+      "name": "Reçete Adı",
+      "path": "GVL_HMI.stRetain.rcp.sRecipeName",
+      "val": "Standart Ürün C"
+    },
+    {
+      "name": "Taşıyıcı Hız",
+      "path": "GVL_HMI.stRetain.rcp.rSpeedSet",
+      "val": "250"
+    },
+    {
+      "name": "Taşıyıcı Pozisyon",
+      "path": "GVL_HMI.stRetain.rcp.rPosSet",
+      "val": "450.5"
+    },
+    {
+      "name": "Yeni Parametre",
+      "path": "GVL_HMI.stRetain.rcp.rTempSet",
+      "val": "125"
+    },
+    {
+      "name": "Yeni Parametre",
+      "path": "GVL_HMI.stRetain.rcp.rPressureSet",
+      "val": "31"
+    }
+  ]
+}
