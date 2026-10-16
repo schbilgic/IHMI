@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.61" creationDateTime="2026-10-16T18:38:01.3452254" />
+  <contentHeader name="Untitled1" modificationDateTime="2026-10-16T18:38:01.3452254">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="ST_DashBoardHMI">
+        <baseType>
+          <struct>
+            <variable name="fSpeedActual">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+            </variable>
+            <variable name="fSpeedTarget">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="1200.0" />
+              </initialValue>
+            </variable>
+            <variable name="fTemperature">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="25.0" />
+              </initialValue>
+            </variable>
+            <variable name="fTemperatureTarget">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="85.0" />
+              </initialValue>
+            </variable>
+            <variable name="bRunning">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bAlarmActive">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_DashBoardHMI :
+STRUCT
+	fSpeedActual        : REAL := 0.0;
+    fSpeedTarget        : REAL := 1200.0;
+    fTemperature        : REAL := 25.0;
+    fTemperatureTarget  : REAL := 85.0;
+    bRunning            : BOOL := FALSE;
+    bAlarmActive        : BOOL := FALSE;
+END_STRUCT
+END_TYPE
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>69d8c015-a0b0-4cb1-b171-f9927271be10</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+    </dataTypes>
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="ST_DashBoardHMI" ObjectId="69d8c015-a0b0-4cb1-b171-f9927271be10" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

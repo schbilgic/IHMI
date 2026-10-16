@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.61" creationDateTime="2026-10-16T18:38:11.32081" />
+  <contentHeader name="Untitled1" modificationDateTime="2026-10-16T18:38:11.32081">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="ST_GlobalHMI">
+        <baseType>
+          <struct>
+            <variable name="bRunning">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Tüm sayfalarda görünen durum</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bAlarmActive">
+              <type>
+                <BOOL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Header alarm durumu</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fEmergencyPressure">
+              <type>
+                <REAL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Birden çok sayfada geçen kritik basınç</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fActualSpeed">
+              <type>
+                <REAL />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Ortak hız göstergesi</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fLineSpeed">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="fTargetPos">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="fMoldTemperature">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="fAirPressure">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="fMoldPos">
+              <type>
+                <REAL />
+              </type>
+            </variable>
+            <variable name="nActiveRecipeId">
+              <type>
+                <INT />
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Aktif reçete numarası</xhtml>
+              </documentation>
+            </variable>
+            <variable name="Alarms">
+              <type>
+                <array>
+                  <dimension lower="0" upper="250" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Aktif Alarmlar</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bAlarmReset">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bCmdStart">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bCmdStop">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bCmdReset">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bLimitFwd">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bLimitBwd">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bLubeOK">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bHomeDone">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_GlobalHMI :
+STRUCT
+	bRunning            : BOOL;     // Tüm sayfalarda görünen durum
+    bAlarmActive        : BOOL;     // Header alarm durumu
+    fEmergencyPressure  : REAL;     // Birden çok sayfada geçen kritik basınç
+    fActualSpeed        : REAL;     // Ortak hız göstergesi
+	fLineSpeed			: REAL;
+	fTargetPos			: REAL;
+	fMoldTemperature	: REAL;
+	fAirPressure		: REAL;
+	fMoldPos			: REAL;
+    nActiveRecipeId     : INT;      // Aktif reçete numarası
+	Alarms :ARRAY [0..250]  OF BOOL; // Aktif Alarmlar
+	bAlarmReset :BOOL;
+	bCmdStart : BOOL;
+    bCmdStop  : BOOL;
+    bCmdReset : BOOL;
+	bLimitFwd			:BOOL;
+	bLimitBwd			:BOOL;
+	bLubeOK 			:BOOL;
+	bHomeDone			:BOOL;
+END_STRUCT
+END_TYPE
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>1a133962-d4de-4664-9169-1a06a539b368</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+    </dataTypes>
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="ST_GlobalHMI" ObjectId="1a133962-d4de-4664-9169-1a06a539b368" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

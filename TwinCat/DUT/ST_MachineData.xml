@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.61" creationDateTime="2026-10-16T18:38:16.4842511" />
+  <contentHeader name="Untitled1" modificationDateTime="2026-10-16T18:38:16.4842511">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="ST_MachineData">
+        <baseType>
+          <struct>
+            <variable name="bRunning">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Durum ve Kontrol</xhtml>
+              </documentation>
+            </variable>
+            <variable name="bEmergencyStop">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bAlarmActive">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bStop">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bStart">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bReset">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="Alrm">
+              <type>
+                <array>
+                  <dimension lower="0" upper="15" />
+                  <baseType>
+                    <BOOL />
+                  </baseType>
+                </array>
+              </type>
+            </variable>
+            <variable name="nMachineState">
+              <type>
+                <INT />
+              </type>
+              <initialValue>
+                <simpleValue value="0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> 0: Durdu, 1: Hazır, 2: Üretimde, 99: Hata</xhtml>
+              </documentation>
+            </variable>
+            <variable name="ftest">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> RPM</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fSpeedSet">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> RPM</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fSpeedActual">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> RPM</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fSpeedTarget">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> RPM</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fTemperature">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="25.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> °C</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fTemperatureTarget">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="25.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> °C</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fTemperatureAct">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="25.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> °C</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fTemperatureSet">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="25.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> °C</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fPressureAct">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="1.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Bar</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fPressureSet">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="1.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Bar</xhtml>
+              </documentation>
+            </variable>
+            <variable name="fCycleTime">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Çevrim süresi (saniye)</xhtml>
+              </documentation>
+            </variable>
+            <variable name="nPartCounter">
+              <type>
+                <DINT />
+              </type>
+              <initialValue>
+                <simpleValue value="0" />
+              </initialValue>
+              <documentation>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml"> Toplam üretilen adet</xhtml>
+              </documentation>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_MachineData :
+STRUCT
+    // Durum ve Kontrol
+    bRunning         : BOOL := FALSE;
+    bEmergencyStop   : BOOL := FALSE;
+    bAlarmActive     : BOOL := FALSE;
+	bStop			 : BOOL := FALSE;
+	bStart			 : BOOL := FALSE;
+    bReset     		: BOOL := FALSE;
+
+	Alrm  :ARRAY[0..15] OF BOOL;
+
+    nMachineState    : INT := 0;      // 0: Durdu, 1: Hazır, 2: Üretimde, 99: Hata
+
+    // Analog / Ölçülen Değerler
+    ftest     : REAL := 0.0;    // RPM
+    fSpeedSet     : REAL := 0.0;    // RPM
+	fSpeedActual     : REAL := 0.0;    // RPM
+    fSpeedTarget     : REAL := 0.0;    // RPM
+	fTemperature     : REAL := 25.0;   // °C
+	fTemperatureTarget  : REAL := 25.0;   // °C
+    fTemperatureAct     : REAL := 25.0;   // °C
+	fTemperatureSet     : REAL := 25.0;   // °C
+    fPressureAct        : REAL := 1.0;    // Bar
+	fPressureSet        : REAL := 1.0;    // Bar
+	
+    // Üretim İstatistikleri
+    
+    fCycleTime       : REAL := 0.0;    // Çevrim süresi (saniye)
+	nPartCounter     : DINT := 0;      // Toplam üretilen adet
+END_STRUCT
+END_TYPE</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>31334098-0f1c-4ed2-8d75-38b0a6cecea1</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+    </dataTypes>
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="ST_MachineData" ObjectId="31334098-0f1c-4ed2-8d75-38b0a6cecea1" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

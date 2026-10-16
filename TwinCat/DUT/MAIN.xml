@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.61" creationDateTime="2026-10-16T18:38:44.7215601" />
+  <contentHeader name="Untitled1" modificationDateTime="2026-10-16T18:38:44.7215601">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous>
+      <pou name="MAIN" pouType="program">
+        <interface>
+          <localVars>
+            <variable name="i">
+              <type>
+                <INT />
+              </type>
+            </variable>
+            <addData>
+              <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                <InterfaceAsPlainText>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">PROGRAM MAIN
+VAR
+  
+    
+	
+
+i: INT;
+
+END_VAR
+</xhtml>
+                </InterfaceAsPlainText>
+              </data>
+            </addData>
+          </localVars>
+        </interface>
+        <body>
+          <ST>
+            <xhtml xmlns="http://www.w3.org/1999/xhtml">
+IF stDashBoard.bRunning THEN
+stGlobal.fEmergencyPressure:=stGlobal.fEmergencyPressure +0.01 ; 
+stDashboard.fSpeedActual:=stDashboard.fSpeedActual+0.04 ;
+stDashboard.fTemperature := stDashboard.fTemperature +0.05;
+stCarriage.fActPosition := stCarriage.fActPosition +0.07;
+stCarriage.fActVelocity := stCarriage.fActVelocity +0.07;
+stMold.fClampingPressure:= stMold.fClampingPressure +0.08;
+stMold.fMoldTemperature:= stMold.fMoldTemperature +0.09;
+ELSE
+stGlobal.fEmergencyPressure:=stGlobal.fEmergencyPressure -0.01 ; ;
+stDashboard.fSpeedActual:=stDashboard.fSpeedActual-0.03 ;
+stDashboard.fTemperature := stDashboard.fTemperature -0.04;
+stCarriage.fActPosition := stCarriage.fActPosition -0.05;
+stCarriage.fActVelocity := stCarriage.fActVelocity -0.06;
+stMold.fClampingPressure:= stMold.fClampingPressure -0.07;
+stMold.fMoldTemperature:= stMold.fMoldTemperature -0.08;
+END_IF
+
+IF bCmdReset THEN
+stDashboard.fSpeedActual:=0.0 ;
+stDashboard.fTemperature := 0.0;
+stCarriage.fActPosition := 0.0;
+stCarriage.fActVelocity := 0.0;
+stMold.fClampingPressure:= 0.0;
+stMold.fMoldTemperature:= 0.0 ;
+END_IF
+GVL_HMI.stGlobal.Alarms[1];
+GVL_HMI.stGlobal.Alarms[3];
+GVL_HMI.stGlobal.Alarms[5];
+IF GVL_HMI.stGlobal.bAlarmReset THEN
+	FOR i:=0 TO 250  DO
+	 GVL_HMI.stGlobal.Alarms[i]:=FALSE;	
+	END_FOR
+END_IF</xhtml>
+          </ST>
+        </body>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">PROGRAM MAIN
+VAR
+  
+    
+	
+
+i: INT;
+
+END_VAR
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>285fbfe9-f157-4425-a320-4f9a5dff4ea2</ObjectId>
+          </data>
+        </addData>
+      </pou>
+    </pous>
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="MAIN" ObjectId="285fbfe9-f157-4425-a320-4f9a5dff4ea2" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.21.61" creationDateTime="2026-10-16T18:38:23.9686799" />
+  <contentHeader name="Untitled1" modificationDateTime="2026-10-16T18:38:23.9686799">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes>
+      <dataType name="ST_MoldHMI">
+        <baseType>
+          <struct>
+            <variable name="fClampingPressure">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="0.0" />
+              </initialValue>
+            </variable>
+            <variable name="fSetClampingPressure">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="120.0" />
+              </initialValue>
+            </variable>
+            <variable name="fMoldTemperature">
+              <type>
+                <REAL />
+              </type>
+              <initialValue>
+                <simpleValue value="65.0" />
+              </initialValue>
+            </variable>
+            <variable name="bCmdMoldClose">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bCmdMoldOpen">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+            <variable name="bLimitFwd">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bLimitBwd">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bLubeOK">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bHomeDone">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bMoldClosed">
+              <type>
+                <BOOL />
+              </type>
+            </variable>
+            <variable name="bAutoCycleToggle">
+              <type>
+                <BOOL />
+              </type>
+              <initialValue>
+                <simpleValue value="FALSE" />
+              </initialValue>
+            </variable>
+          </struct>
+        </baseType>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+            <InterfaceAsPlainText>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml">TYPE ST_MoldHMI :
+STRUCT
+	fClampingPressure    : REAL := 0.0;
+    fSetClampingPressure : REAL := 120.0;
+    fMoldTemperature     : REAL := 65.0;
+    bCmdMoldClose        : BOOL := FALSE;
+    bCmdMoldOpen         : BOOL := FALSE;
+	bLimitFwd			:BOOL;
+	bLimitBwd			:BOOL;
+	bLubeOK :BOOL;
+	
+	bHomeDone  :BOOL;
+	bMoldClosed :BOOL;
+    bAutoCycleToggle     : BOOL := FALSE;
+END_STRUCT
+END_TYPE
+</xhtml>
+            </InterfaceAsPlainText>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>51c0a0cc-9bf2-47cc-812d-790f65648b90</ObjectId>
+          </data>
+        </addData>
+      </dataType>
+    </dataTypes>
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="ST_MoldHMI" ObjectId="51c0a0cc-9bf2-47cc-812d-790f65648b90" />
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>
