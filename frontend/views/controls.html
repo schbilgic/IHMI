@@ -1,0 +1,201 @@
+<!-- CONTROLS COMPONENT SHOWCASE (controls.html) -->
+<div class="page-container" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; height: 100%; overflow-y: auto; box-sizing: border-box;">
+
+  <!-- Üst Başlık & Açıklama Banner'ı -->
+  <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 1.25rem 1.5rem; border-radius: 10px; border: 1px solid #334155; display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <h2 style="margin: 0; font-size: 1.35rem; color: #f8fafc; display: flex; align-items: center; gap: 0.5rem;">
+        🎛️ HMI Bileşen ve Kontrol Vitrini
+      </h2>
+      <p style="margin: 0.3rem 0 0 0; font-size: 0.85rem; color: #94a3b8;">
+        Bu sayfadaki tüm widget'lar projemizdeki aktif PLC sembol yollarına bağlıdır. Herhangi bir sayfada yeniden kullanılabilir.
+      </p>
+    </div>
+    <span class="role-badge" style="background: #3b82f6; font-size: 0.85rem; padding: 4px 10px;">Endüstriyel UI Standartları</span>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BÖLÜM 1: DOKUNMATİK SAYISAL GİRİŞ KARTLARI (METRIC INPUT CARDS)           -->
+  <!-- ========================================================================= -->
+  <div style="background: #1e293b; padding: 1.25rem; border-radius: 8px; border: 1px solid #334155;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.05rem; color: #38bdf8; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+      1. Numpad Entegreli Dokunmatik Değer Kartları (Hız, Pozisyon, Sıcaklık)
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+      
+      <!-- Hız Kartı (Formatlı Ondalık) -->
+      <div class="hmi-card card-editable"  data-symbol="GVL_HMI.stGlobal.fLineSpeed" data-format="1" data-min="0" data-max="500" data-unit="m/dk" data-auth="operator"
+           style="background: #0f172a; padding: 1rem; border-radius: 8px; border: 1px solid #334155; cursor: pointer; position: relative;">
+        <span style="font-size: 0.85rem; color: #94a3b8; display: block;">Hat Hızı (Set/Aktüel)</span>
+        <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.5rem;">
+          <span class="metric-value" style="font-size: 2rem; font-weight: 700; color: #f8fafc; font-family: monospace;">0.0</span>
+          <span style="color: #64748b; font-size: 0.9rem;">m/dk</span>
+        </div>
+        <span style="position: absolute; right: 10px; top: 10px; font-size: 0.75rem; color: #3b82f6;">✏️ Dokun</span>
+      </div>
+
+      <!-- Hedef Pozisyon Kartı -->
+      <div class="hmi-card hmi-input-card" data-symbol="GVL_HMI.stGlobal.fTargetPos" data-format="2" data-min="0" data-max="1000" data-unit="mm" data-auth="technician"
+           style="background: #0f172a; padding: 1rem; border-radius: 8px; border: 1px solid #334155; cursor: pointer; position: relative;">
+        <span style="font-size: 0.85rem; color: #94a3b8; display: block;">Hedef Konum (Set)</span>
+        <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.5rem;">
+          <span class="metric-value" style="font-size: 2rem; font-weight: 700; color: #38bdf8; font-family: monospace;">0.00</span>
+          <span style="color: #64748b; font-size: 0.9rem;">mm</span>
+        </div>
+        <span style="position: absolute; right: 10px; top: 10px; font-size: 0.75rem; color: #fbbf24;">🔒 Teknisyen</span>
+      </div>
+
+      <!-- Kalıp Sıcaklık Set Kartı -->
+      <div class="hmi-card hmi-input-card" data-symbol="GVL_HMI.stGlobal.fMoldTemperature" data-format="1" data-min="20" data-max="300" data-unit="°C" data-auth="operator"
+           style="background: #0f172a; padding: 1rem; border-radius: 8px; border: 1px solid #334155; cursor: pointer; position: relative;">
+        <span style="font-size: 0.85rem; color: #94a3b8; display: block;">Kalıp Sıcaklık Set</span>
+        <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-top: 0.5rem;">
+          <span class="metric-value" style="font-size: 2rem; font-weight: 700; color: #f87171; font-family: monospace;">0.0</span>
+          <span style="color: #64748b; font-size: 0.9rem;">°C</span>
+        </div>
+        <span style="position: absolute; right: 10px; top: 10px; font-size: 0.75rem; color: #3b82f6;">✏️ Dokun</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BÖLÜM 2: BUTON ÇEŞİTLERİ (MOMENTARY, TOGGLE, COMMAND & FEEDBACK)           -->
+  <!-- ========================================================================= -->
+  <div style="background: #1e293b; padding: 1.25rem; border-radius: 8px; border: 1px solid #334155;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.05rem; color: #38bdf8; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+      2. Buton Standartları (Anlık Basmalı, Kalıcı Buton ve İki Renkli Durum)
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+
+      <!-- Momentary Buton: Jog İleri -->
+      <button class="btn hmi-btn" data-type="momentary" data-symbol="GVL.bCmdStart"
+              style="height: 52px; background: #0284c7; color: #fff; font-size: 1rem; font-weight: 600; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; user-select: none;">
+        <span>▶</span> Jog / Başlat (Momentary)
+      </button>
+
+      <!-- Momentary Buton: Eksen Durdurma -->
+      <button class="btn btn-red hmi-btn" data-type="momentary" data-symbol="GVL.bCmdStop"
+              style="height: 52px; font-size: 1rem; font-weight: 600; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; user-select: none;">
+        <span>⏹</span> Durdur (Momentary)
+      </button>
+
+      <!-- Toggle Buton + PLC Feedback Durumu (Yağlama/Soğutma) -->
+      <button class="btn hmi-btn" data-type="toggle" data-symbol="GVL_HMI.stAux.bChillerRunning" data-feedback="GVL_HMI.stAux.bChillerRunning"
+              style="height: 52px; background: #334155; color: #fff; font-size: 1rem; font-weight: 600; border-radius: 6px; border: 1px solid #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <span>❄️</span> Soğutucu Aç/Kapat (Toggle)
+      </button>
+
+      <!-- Yetki Korumalı Admin Butonu -->
+      <button class="btn btn-blue" data-auth="admin" onclick="alert('Admin onay verdi!')"
+              style="height: 52px; font-size: 1rem; font-weight: 600; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <span>⚙️</span> Kalibrasyon (Sadece Admin)
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BÖLÜM 3: CANLI DİJİTAL SENSÖR / LED GERİ BİLDİRİM PANELİ                  -->
+  <!-- ========================================================================= -->
+  <div style="background: #1e293b; padding: 1.25rem; border-radius: 8px; border: 1px solid #334155;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.05rem; color: #38bdf8; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+      3. Sensör ve Giriş/Çıkış (I/O) Durum İndikatörleri (Endüstriyel LED'ler)
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;">
+
+      <!-- İleri Limit Sensörü -->
+      <div style="background: #0f172a; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid #334155; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; color: #cbd5e1;">İleri Limit</span>
+        <button class="hmi-btn" data-feedback="GVL_HMI.stGlobal.bLimitFwd"
+                style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #475569; background: #1e293b; pointer-events: none; transition: all 0.2s;"></button>
+      </div>
+
+      <!-- Geri Limit Sensörü -->
+      <div style="background: #0f172a; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid #334155; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; color: #cbd5e1;">Geri Limit</span>
+        <button class="hmi-btn" data-feedback="GVL_HMI.stGlobal.bLimitBwd"
+                style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #475569; background: #1e293b; pointer-events: none; transition: all 0.2s;"></button>
+      </div>
+
+      <!-- Home Referans Tamam -->
+      <div style="background: #0f172a; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid #334155; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; color: #cbd5e1;">Home Yapıldı</span>
+        <button class="hmi-btn" data-feedback="GVL_HMI.stGlobal.bHomeDone"
+                style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #475569; background: #1e293b; pointer-events: none; transition: all 0.2s;"></button>
+      </div>
+
+      <!-- Yağlama Basıncı OK -->
+      <div style="background: #0f172a; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid #334155; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; color: #cbd5e1;">Yağlama Basıncı</span>
+        <button class="hmi-btn" data-feedback="GVL_HMI.stGlobal.bLubeOk"
+                style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #475569; background: #1e293b; pointer-events: none; transition: all 0.2s;"></button>
+      </div>
+
+      <!-- Kalıp Kapalı Sensörü -->
+      <div style="background: #0f172a; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid #334155; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.85rem; color: #cbd5e1;">Kalıp Kapalı</span>
+        <button class="hmi-btn" data-feedback="GVL_HMI.stGlobal.bMoldClosed"
+                style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid #475569; background: #1e293b; pointer-events: none; transition: all 0.2s;"></button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- BÖLÜM 4: ÇUBUK GÖSTERGELER & GÖRSEL İLERLEME (PROGRESS / BAR GAUGES)      -->
+  <!-- ========================================================================= -->
+  <div style="background: #1e293b; padding: 1.25rem; border-radius: 8px; border: 1px solid #334155;">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.05rem; color: #38bdf8; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+      4. Çubuk / Bar Göstergeleri (Analog Değerleri Görselleştirme)
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+
+      <!-- Basınç Çubuğu (0-10 Bar) -->
+      <div data-symbol="GVL_HMI.stGlobal.fAirPressure" data-min="0" data-max="10"
+           style="background: #0f172a; padding: 1rem; border-radius: 8px; border: 1px solid #334155;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-size: 0.85rem; color: #94a3b8;">Hava Basıncı</span>
+          <span style="font-weight: bold; color: #38bdf8;"><span class="metric-value">6.2</span> Bar</span>
+        </div>
+        <div style="background: #1e293b; height: 12px; border-radius: 6px; overflow: hidden; border: 1px solid #334155;">
+          <div class="bar-fill" style="width: 62%; height: 100%; background: linear-gradient(90deg, #38bdf8, #0284c7); transition: width 0.3s ease;"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-top: 4px;">
+          <span>0 Bar</span>
+          <span>5 Bar</span>
+          <span>10 Bar</span>
+        </div>
+      </div>
+
+      <!-- Kalıp Konumu (Strok / Mesafe) -->
+      <!-- ÖRNEK 2: Kalıp Konumu / Strok (0 - 500 mm) -->
+    <div class="hmi-bar-card" 
+         data-symbol="GVL_HMI.stGlobal.fMoldPos" 
+         data-min="0" 
+         data-max="500" 
+         data-format="1"
+         style="background: #0f172a; padding: 1rem; border-radius: 8px; border: 1px solid #334155;">
+      
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <span style="font-size: 0.85rem; color: #94a3b8;">Kalıp Açılma Pozisyonu</span>
+        <span style="font-weight: bold; color: #4ade80;">
+          <span class="bar-value">0.0</span> mm
+        </span>
+      </div>
+
+      <div style="background: #1e293b; height: 14px; border-radius: 7px; overflow: hidden; border: 1px solid #334155;">
+        <div class="bar-fill" data-symbol="GVL_HMI.stGlobal.fMoldPos" style="width: 30%; height: 100%; background: linear-gradient(90deg, #4ade80, #16a34a); transition: width 0.25s ease, background 0.3s ease;"></div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-top: 4px;">
+        <span class="bar-scale-min">0 mm</span>
+        <span class="bar-scale-mid">250 mm</span>
+        <span class="bar-scale-max">500 mm</span>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+</div>

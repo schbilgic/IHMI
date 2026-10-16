@@ -85,7 +85,8 @@ const PAGE_STRUCT_MAP = {
   alarms: null,
   recipes: 'GVL_HMI.stRecipes',
   settings: null,
-  texts: null
+  texts: null,
+  controls: null
 };
 
 // --- ALARM MODÜLÜ STATE YÖNETİMİ ---
@@ -122,7 +123,16 @@ const router = new ViewRouter('app-content', (viewName) => {
   } 
     if (viewName === 'recipes') {
     if (window.recipeManager) window.recipeManager.initView();
+  } else if (viewName === 'controls') {
+    // 👈 Controls sayfası açıldığında buton ve kart tıklamalarını hazırla
+    bindHmiButtons();
+    applyPermissions();
+    
   }
+
+
+
+  
 });
 
 // Alt Navigasyon Çubuğu Buton Vurgusu
@@ -190,6 +200,7 @@ socket.on('plc:dataMap', (dataMap) => {
         const decimals = card.dataset.format !== undefined ? parseInt(card.dataset.format, 10) : 1;
         valSpan.textContent = typeof rawVal === 'number' ? rawVal.toFixed(decimals) : rawVal;
       }
+      updateHmiBars(data);
     }
   });
 
@@ -208,6 +219,56 @@ socket.on('plc:dataMap', (dataMap) => {
       btn.classList.toggle('btn-active', Boolean(val));
     }
   });
+
+    /**
+   * Sayfadaki tüm dinamik bar göstergelerini PLC verisine göre günceller
+   * @param {Object} payload - Socket'ten gelen sembol-değer haritası
+   */
+  function updateHmiBars(payload) {
+    if (!payload || typeof payload !== 'object') return;
+
+    const barCards = document.querySelectorAll('.hmi-bar-card');
+
+    barCards.forEach(card => {
+      const symbol = card.getAttribute('data-symbol');
+      if (!symbol || payload[symbol] === undefined) return;
+
+      const rawVal = payload[symbol];
+      const numVal = Number(rawVal);
+      if (isNaN(numVal)) return;
+
+      // Skala Değerleri
+      const min = parseFloat(card.getAttribute('data-min')) || 0;
+      const max = parseFloat(card.getAttribute('data-max')) || 100;
+      const decimals = parseInt(card.getAttribute('data-format') || '1', 10);
+
+      // 1. Yüzde Hesaplama (0% ile 100% arasına sınırla)
+      let percent = ((numVal - min) / (max - min)) * 100;
+      percent = Math.max(0, Math.min(100, percent));
+
+      // 2. Bar Genişliğini Güncelle
+      const fillBar = card.querySelector('.bar-fill');
+      if (fillBar) {
+        fillBar.style.width = `${percent.toFixed(1)}%`;
+
+        // İsteğe Bağlı: %90 üzerine çıkınca uyarı rengi (Kırmızı/Turuncu)
+        if (percent >= 90) {
+          fillBar.style.background = 'linear-gradient(90deg, #f87171, #ef4444)';
+        } else if (percent >= 75) {
+          fillBar.style.background = 'linear-gradient(90deg, #fbbf24, #d97706)';
+        } else {
+          // Varsayılan gradyan (Örnek: Mavi veya Yeşil)
+          fillBar.style.background = card.getAttribute('data-bar-color') || '';
+        }
+      }
+
+      // 3. Rakam Metnini Güncelle
+      const textVal = card.querySelector('.bar-value');
+      if (textVal) {
+        textVal.textContent = numVal.toFixed(decimals);
+      }
+    });
+  }
 
   // Genel Makine Durum Rozeti
   const isAlarm = Boolean(dataMap['GVL_HMI.stGlobal.bAlarmActive'] || dataMap['bAlarmActive']);

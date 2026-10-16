@@ -1,5 +1,5 @@
-<main class="grid-container">
- 
+
+ <div class="grid-container">
   <div class="card" data-symbol="GVL_HMI.stDashboard.fSpeedActual" data-format="1">
     <h3>Motor Hızı</h3>
     <div class="metric"><span class="metric-value">--</span> <small>RPM</small></div>
@@ -35,9 +35,15 @@
     <h3>Hat Basıncı</h3>
     <div class="metric"><span class="metric-value">--</span> <small>Bar</small></div>
   </div>
-</main>
+  </div>
 
   <div class="page-action-bar">
+   <button class="btn btn-green hmi-btn" data-symbol="GVL.bCmdStart" data-type="momentary" data-auth="operator" data-i18n="30">BAŞLAT</button>
+   <button class="btn btn-red hmi-btn" data-symbol="GVL.bCmdStop" data-type="momentary" data-auth="operator" data-i18n="31">DURDUR</button>
+   <button class="btn btn-blue hmi-btn" data-symbol="GVL.bCmdReset" data-type="momentary" data-auth="admin" data-i18n="32">HATA SIFIRLA</button>
+   <button class="btn btn-gray hmi-btn" data-symbol="GVL_HMI.stDashboard.bRunning" data-type="toggle" data-feedback="GVL_HMI.stDashboard.bRunning" data-auth="technician" data-i18n="33">ManualStart</button>
+  </div>
+    <div class="page-action-bar">
    <button class="btn btn-green hmi-btn" data-symbol="GVL.bCmdStart" data-type="momentary" data-auth="operator" data-i18n="30">BAŞLAT</button>
    <button class="btn btn-red hmi-btn" data-symbol="GVL.bCmdStop" data-type="momentary" data-auth="operator" data-i18n="31">DURDUR</button>
    <button class="btn btn-blue hmi-btn" data-symbol="GVL.bCmdReset" data-type="momentary" data-auth="admin" data-i18n="32">HATA SIFIRLA</button>
